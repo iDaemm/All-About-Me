@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Website Pertama Saya</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background-color: #0d1117;
+            color: white;
+            padding-top: 100px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #238636;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2ea043;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Website Saya Berhasil Online 🎉</h1>
+    <p>Klik tombol di bawah:</p>
+
+    <button onclick="klikSaya()">Klik Saya</button>
+
+    <p id="hasil"></p>
+
+    <script>
+        function klikSaya() {
+            document.getElementById("hasil").innerHTML =
+                "Halo! Website ini berjalan di GitHub Pages!";
+        }
+    </script>
+
+</body>
+</html>
