@@ -3,71 +3,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Halo! Ini Saya</title>
+    <title>Sapa Saya! - [Nama Anda]</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
+        /* Variabel Warna & Font */
         :root {
-            --primary: #2563eb;
-            --dark: #1e293b;
-            --light: #f8fafc;
+            --primary-color: #5a67d8; /* Indigo Blue */
+            --secondary-color: #4c51bf;
+            --text-dark: #2d3748;
+            --text-light: #edf2f7;
+            --background-light: #f7fafc;
+            --card-background: #ffffff;
+            --shadow-light: rgba(0, 0, 0, 0.05);
+            --shadow-medium: rgba(0, 0, 0, 0.1);
         }
+
+        /* Reset & Global Styles */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
-            background-color: var(--light);
-            color: var(--dark);
+            padding: 0;
+            box-sizing: border-box;
+            background: linear-gradient(135deg, var(--background-light), #e2e8f0); /* Soft gradient background */
+            color: var(--text-dark);
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
-        .card {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            max-width: 400px;
+
+        .container {
+            max-width: 900px;
             width: 90%;
-            text-align: center;
+            margin: 2rem auto;
+            display: flex;
+            flex-direction: column; /* Default for mobile */
+            gap: 2rem;
+            animation: fadeIn 1s ease-out forwards;
         }
+
+        @media (min-width: 768px) {
+            .container {
+                flex-direction: row; /* Side-by-side for larger screens */
+                align-items: center;
+            }
+        }
+
+        /* Profile Card Styling */
+        .profile-card {
+            background: var(--card-background);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px var(--shadow-medium);
+            text-align: center;
+            flex: 1; /* Allow card to grow */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .profile-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px var(--shadow-light);
+        }
+
         .profile-img {
-            width: 120px;
-            height: 120px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid var(--primary);
-            margin-bottom: 1rem;
+            border: 6px solid var(--primary-color);
+            padding: 3px;
+            background-color: white;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 15px var(--shadow-light);
         }
-        h1 { margin: 10px 0; font-size: 1.5rem; }
-        p { color: #64748b; line-height: 1.6; }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            color: #6a738a;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #4a5568;
+            margin-bottom: 2rem;
+        }
+
+        /* Social Links */
         .social-links {
-            margin-top: 20px;
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: 1.5rem;
+            flex-wrap: wrap; /* Allow wrapping on small screens */
         }
-        .btn {
+
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
             text-decoration: none;
             color: white;
-            background: var(--primary);
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            transition: 0.3s;
+            background: var(--primary-color);
+            padding: 0.8rem 1.8rem;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: background 0.3s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0 5px 15px rgba(90, 103, 216, 0.3);
         }
-        .btn:hover { opacity: 0.8; transform: translateY(-2px); }
+
+        .social-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(90, 103, 216, 0.4);
+        }
+
+        .social-btn i {
+            font-size: 1.1rem;
+        }
+
+        /* Optional: Detail Section (for more info) */
+        .detail-section {
+            background: var(--card-background);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px var(--shadow-medium);
+            flex: 1.2; /* Can be larger than profile card */
+            text-align: left;
+        }
+
+        .detail-section h2 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .detail-section ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 1.5rem;
+        }
+
+        .detail-section ul li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            color: #4a5568;
+        }
+
+        .detail-section ul li strong {
+            color: var(--text-dark);
+            min-width: 100px; /* Aligns content */
+        }
+
+        /* Font Awesome for Icons */
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+
+        /* Keyframe Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <img src="https://via.placeholder.com/150" alt="Foto Profil" class="profile-img">
-        
-        <h1>Halo, Saya [Nama Anda] 👋</h1>
-        <p>Saya adalah seorang [Pekerjaan/Hobi, misal: Pelajar/Web Developer] yang tertarik pada teknologi dan desain. Senang bertemu denganmu!</p>
-        
-        <div class="social-links">
-            <a href="#" class="btn">GitHub</a>
-            <a href="#" class="btn">Instagram</a>
+    <div class="container">
+        <div class="profile-card">
+            <img src="https://via.placeholder.com/150/5a67d8/ffffff?text=Your+Pic" alt="Foto Profil Anda" class="profile-img">
+            
+            <h1>[Nama Lengkap Anda]</h1>
+            <p class="tagline">Pengembang Web | Kreator Konten | Pecinta Kopi ☕</p>
+            <p>Halo! Saya adalah seorang [profesi Anda] dengan passion di bidang [minat utama Anda]. Saya senang belajar hal baru dan berbagi pengetahuan. Mari terhubung!</p>
+            
+            <div class="social-links">
+                <a href="https://github.com/namausergithubanda" target="_blank" class="social-btn">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="https://instagram.com/namauserinstagramanda" target="_blank" class="social-btn">
+                    <i class="fab fa-instagram"></i> Instagram
+                </a>
+                <a href="https://linkedin.com/in/namauserlinkedinanda" target="_blank" class="social-btn">
+                    <i class="fab fa-linkedin-in"></i> LinkedIn
+                </a>
+                <a href="mailto:emailanda@example.com" class="social-btn">
+                    <i class="fas fa-envelope"></i> Email
+                </a>
+            </div>
+        </div>
+
+        <div class="detail-section">
+            <h2>Tentang Saya & Skill</h2>
+            <p>Saya memiliki pengalaman dalam [misal: membangun antarmuka pengguna interaktif menggunakan React dan Vue.js, atau menulis artikel teknis]. Saya selalu mencari tantangan baru untuk mengasah kemampuan.</p>
+
+            <ul>
+                <li><strong>Keahlian:</strong> HTML, CSS, JavaScript, (Opsional: React, Python, UI/UX Design)</li>
+                <li><strong>Proyek Favorit:</strong> Membangun website portofolio interaktif dan aplikasi manajemen tugas sederhana.</li>
+                <li><strong>Bahasa:</strong> Bahasa Indonesia (Native), English (Intermediate)</li>
+                <li><strong>Hobi:</strong> Membaca buku fiksi ilmiah, mendaki gunung, bermain gitar.</li>
+            </ul>
         </div>
     </div>
 
