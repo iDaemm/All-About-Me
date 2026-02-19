@@ -1,46 +1,75 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-    <title>Website Pertama Saya</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halo! Ini Saya</title>
     <style>
+        :root {
+            --primary: #2563eb;
+            --dark: #1e293b;
+            --light: #f8fafc;
+        }
         body {
-            font-family: Arial;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: var(--light);
+            color: var(--dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            max-width: 400px;
+            width: 90%;
             text-align: center;
-            background-color: #0d1117;
+        }
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary);
+            margin-bottom: 1rem;
+        }
+        h1 { margin: 10px 0; font-size: 1.5rem; }
+        p { color: #64748b; line-height: 1.6; }
+        .social-links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        .btn {
+            text-decoration: none;
             color: white;
-            padding-top: 100px;
+            background: var(--primary);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: 0.3s;
         }
-
-        button {
-            padding: 10px 20px;
-            font-size: 18px;
-            background-color: #238636;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #2ea043;
-        }
+        .btn:hover { opacity: 0.8; transform: translateY(-2px); }
     </style>
 </head>
 <body>
 
-    <h1>Website Saya Berhasil Online 🎉</h1>
-    <p>Klik tombol di bawah:</p>
-
-    <button onclick="klikSaya()">Klik Saya</button>
-
-    <p id="hasil"></p>
-
-    <script>
-        function klikSaya() {
-            document.getElementById("hasil").innerHTML =
-                "Halo! Website ini berjalan di GitHub Pages!";
-        }
-    </script>
+    <div class="card">
+        <img src="https://via.placeholder.com/150" alt="Foto Profil" class="profile-img">
+        
+        <h1>Halo, Saya [Nama Anda] 👋</h1>
+        <p>Saya adalah seorang [Pekerjaan/Hobi, misal: Pelajar/Web Developer] yang tertarik pada teknologi dan desain. Senang bertemu denganmu!</p>
+        
+        <div class="social-links">
+            <a href="#" class="btn">GitHub</a>
+            <a href="#" class="btn">Instagram</a>
+        </div>
+    </div>
 
 </body>
 </html>
