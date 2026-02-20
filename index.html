@@ -20,59 +20,108 @@
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: var(--bg);
-            background-image: radial-gradient(circle at 50% 50%, #1e293b 0%, #0b0f1a 100%);
+            background-image: radial-gradient(circle at 20% 30%, #1e293b 0%, #0b0f1a 100%);
             color: white;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            padding: 40px 20px;
+            overflow-x: hidden;
+            padding: 80px 20px;
         }
 
-        header { text-align: center; margin-bottom: 50px; }
-        header h1 { font-size: 2.5rem; font-weight: 800; background: linear-gradient(to right, #fff, #94a3b8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        /* Dekoran Background */
+        .blob {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: var(--accent);
+            filter: blur(150px);
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.15;
+            animation: float 20s infinite alternate;
+        }
+
+        @keyframes float {
+            from { transform: translate(-20%, -20%); }
+            to { transform: translate(20%, 20%); }
+        }
+
+        header { text-align: center; margin-bottom: 70px; position: relative; }
+        header h1 { 
+            font-size: 3.5rem; 
+            font-weight: 800; 
+            background: linear-gradient(to bottom, #fff 30%, #6366f1); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -2px;
+        }
+        header::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: var(--accent-gradient);
+            margin: 15px auto;
+            border-radius: 10px;
+        }
 
         .team-container {
             max-width: 1200px;
             width: 100%;
             display: flex;
             flex-direction: column;
-            gap: 30px;
+            gap: 50px;
+            z-index: 1;
         }
 
         .row {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 30px;
             flex-wrap: wrap;
         }
 
         /* Card Styling */
         .member-card {
             background: var(--glass);
-            backdrop-filter: blur(15px);
+            backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 30px;
+            border-radius: 30px;
+            padding: 40px 30px;
             text-align: center;
             flex: 1;
-            min-width: 250px;
-            max-width: 300px;
-            transition: all 0.4s ease;
-            animation: fadeIn 0.8s ease forwards;
+            min-width: 280px;
+            max-width: 320px;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
         }
 
         .member-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent);
-            background: rgba(255,255,255,0.06);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            transform: translateY(-15px) scale(1.02);
+            border-color: rgba(99, 102, 241, 0.5);
+            background: rgba(255, 255, 255, 0.07);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
         }
 
+        /* Glow Effect on Hover */
+        .member-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, var(--accent) 0%, transparent 70%);
+            opacity: 0;
+            transition: 0.5s;
+            z-index: -1;
+            border-radius: 30px;
+        }
+
+        .member-card:hover::before { opacity: 0.1; }
+
         .img-wrapper {
-            width: 110px; height: 110px;
-            margin: 0 auto 20px;
+            width: 130px; height: 130px;
+            margin: 0 auto 25px;
             position: relative;
         }
 
@@ -80,44 +129,66 @@
             width: 100%; height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid var(--bg);
+            border: 4px solid var(--bg);
+            background: #1e293b;
         }
 
         .img-wrapper::after {
-            content: ''; position: absolute; inset: -4px;
+            content: ''; position: absolute; inset: -5px;
             border-radius: 50%;
             background: linear-gradient(45deg, var(--accent), var(--accent-2));
             z-index: -1;
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.4);
         }
 
-        .name { font-size: 1.3rem; font-weight: 700; margin-bottom: 6px; display: block; }
+        .name { font-size: 1.4rem; font-weight: 700; margin-bottom: 8px; display: block; letter-spacing: -0.5px; }
         .role { 
             font-size: 0.8rem; font-weight: 800; color: var(--accent);
-            text-transform: uppercase; letter-spacing: 2px;
+            text-transform: uppercase; letter-spacing: 3px;
+            display: inline-block;
+            margin-bottom: 20px;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Ikon Sosial Media di bawah Nama */
+        .card-socials {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            opacity: 0.5;
+            transition: 0.3s;
         }
 
-        /* Label Khusus Baris */
+        .member-card:hover .card-socials { opacity: 1; }
+
+        .card-socials i {
+            font-size: 1rem;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .card-socials i:hover { color: var(--accent); transform: scale(1.2); }
+
         .row-label {
             text-align: center;
-            font-size: 0.9rem;
-            color: #64748b;
+            font-size: 0.8rem;
+            color: var(--accent);
             text-transform: uppercase;
-            letter-spacing: 4px;
-            margin-bottom: 10px;
-            font-weight: 600;
+            letter-spacing: 6px;
+            margin-bottom: -10px;
+            font-weight: 800;
+            opacity: 0.8;
         }
 
         @media (max-width: 768px) {
+            header h1 { font-size: 2.5rem; }
             .member-card { max-width: 100%; flex: none; width: 100%; }
         }
     </style>
 </head>
 <body>
+
+    <div class="blob"></div>
 
     <header>
         <h1>Polibatam Fair</h1>
@@ -125,25 +196,34 @@
 
     <div class="team-container">
         
-        <div class="row-label">Our Team</div>
+        <div class="row-label">Project Leaders</div>
         <div class="row">
             <div class="member-card">
                 <div class="img-wrapper">
-                    <img src="https://imgur.com/a/haSmoGl" alt="Leader">
+                    <img src="https://i.imgur.com/yourlink.jpg" alt="Leader" onerror="this.src='https://api.dicebear.com/7.x/avataaars/svg?seed=leader'">
                 </div>
                 <span class="name">Nama Leader</span>
                 <span class="role">Team Leader</span>
+                <div class="card-socials">
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-linkedin"></i>
+                    <i class="fab fa-github"></i>
+                </div>
             </div>
+
             <div class="member-card">
                 <div class="img-wrapper">
                     <img src="https://i.imgur.com/b25UJ8S.jpeg" alt="Co-Leader">
                 </div>
                 <span class="name">Miqdam Fataul Ghaza</span>
                 <span class="role">Co-Leader</span>
+                <div class="card-socials">
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-linkedin"></i>
+                    <i class="fab fa-github"></i>
+                </div>
             </div>
         </div>
-
-        <div style="height: 20px;"></div>
 
         <div class="row-label">Administration & Finance</div>
         <div class="row">
@@ -151,41 +231,52 @@
                 <div class="img-wrapper">
                     <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=sec1" alt="Sekre 1">
                 </div>
-                <span class="name">?</span>
+                <span class="name">Nama Sekretaris</span>
                 <span class="role">Secretary 1</span>
+                <div class="card-socials">
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-linkedin"></i>
+                </div>
             </div>
             <div class="member-card">
                 <div class="img-wrapper">
                     <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=sec2" alt="Sekre 2">
                 </div>
-                <span class="name">?</span>
+                <span class="name">Nama Sekretaris</span>
                 <span class="role">Secretary 2</span>
+                <div class="card-socials">
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-linkedin"></i>
+                </div>
             </div>
             <div class="member-card">
                 <div class="img-wrapper">
                     <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=tre1" alt="Bend 1">
                 </div>
-                <span class="name">?</span>
+                <span class="name">Nama Bendahara</span>
                 <span class="role">Treasurer 1</span>
+                <div class="card-socials">
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-linkedin"></i>
+                </div>
             </div>
             <div class="member-card">
                 <div class="img-wrapper">
                     <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=tre2" alt="Bend 2">
                 </div>
-                <span class="name">?</span>
+                <span class="name">Nama Bendahara</span>
                 <span class="role">Treasurer 2</span>
+                <div class="card-socials">
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-linkedin"></i>
+                </div>
             </div>
         </div>
-
     </div>
+
+    <footer style="margin-top: 100px; color: #475569; font-size: 0.8rem; letter-spacing: 2px;">
+        &copy; 2026 POLIBATAM FAIR TEAM
+    </footer>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
