@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI_CORE | Engineering Intelligent</title>
+    <title>AI_CORE | Team Hierarchy</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <style>
@@ -11,204 +11,178 @@
             --cyan: #00f2ff;
             --blue: #3b82f6;
             --bg: #030712;
-            --panel: rgba(15, 23, 42, 0.9);
             --border: rgba(0, 242, 255, 0.2);
             --font-code: 'JetBrains Mono', monospace;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
         body {
             font-family: 'Space Grotesk', sans-serif;
             background-color: var(--bg);
             color: white;
             min-height: 100vh;
-            overflow-x: hidden;
-            background-image: 
-                linear-gradient(var(--border) 1px, transparent 1px),
-                linear-gradient(90deg, var(--border) 1px, transparent 1px);
-            background-size: 50px 50px;
-            display: flex; flex-direction: column; align-items: center; padding: 80px 20px;
+            background-image: radial-gradient(var(--border) 1px, transparent 1px);
+            background-size: 40px 40px;
+            display: flex; flex-direction: column; align-items: center; padding: 60px 20px;
         }
 
-        /* --- HEADER --- */
-        .header-section { text-align: center; margin-bottom: 80px; position: relative; }
-        .header-section h1 { 
-            font-size: clamp(2rem, 8vw, 4rem); font-weight: 700; letter-spacing: 10px; 
-            text-transform: uppercase; color: var(--cyan); text-shadow: 0 0 20px rgba(0, 242, 255, 0.5);
-        }
-        .header-section p { font-family: var(--font-code); font-size: 0.8rem; opacity: 0.6; margin-top: 10px; }
+        .header-section { text-align: center; margin-bottom: 60px; }
+        .header-section h1 { font-size: 2.5rem; letter-spacing: 5px; color: var(--cyan); text-transform: uppercase; }
 
-        /* --- TEAM GRID --- */
-        .team-grid {
+        .container { max-width: 1200px; width: 100%; }
+
+        /* --- LAYOUT GRID --- */
+        .row-leaders {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 30px; max-width: 1200px; width: 100%;
+            grid-template-columns: repeat(3, 1fr); /* 3 Kolom di atas */
+            gap: 25px;
+            margin-bottom: 40px;
         }
 
+        .row-admins {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 Kolom di bawah */
+            gap: 20px;
+        }
+
+        /* --- CARD STYLE --- */
         .card {
-            background: var(--panel);
+            background: rgba(15, 23, 42, 0.85);
             border: 1px solid var(--border);
-            padding: 40px 20px;
-            position: relative;
+            padding: 30px 15px;
+            text-align: center;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            clip-path: polygon(0 0, 90% 0, 100% 10%, 100% 100%, 10% 100%, 0 90%);
+            transition: 0.3s;
+            clip-path: polygon(0 0, 92% 0, 100% 10%, 100% 100%, 8% 100%, 0 90%);
         }
 
         .card:hover {
-            transform: translateY(-10px) scale(1.02);
             border-color: var(--cyan);
-            box-shadow: 0 0 30px rgba(0, 242, 255, 0.2);
+            transform: translateY(-8px);
+            background: rgba(0, 242, 255, 0.05);
         }
 
-        /* Scanline Animation */
-        .card::before {
-            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
-            background: var(--cyan); opacity: 0; z-index: 2;
-        }
-        .card:hover::before { animation: scan 2s linear infinite; opacity: 1; }
-
-        @keyframes scan { 0% { top: 0; } 100% { top: 100%; } }
-
-        .hex-box {
-            width: 130px; height: 130px; margin: 0 auto 25px;
+        .hex-frame {
+            width: 100px; height: 100px; margin: 0 auto 15px;
             clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-            background: var(--cyan); padding: 3px; position: relative;
+            background: var(--cyan); padding: 2px;
         }
 
-        .hex-box img {
+        .hex-frame img {
             width: 100%; height: 100%; object-fit: cover;
             clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-            background: var(--bg); transition: 0.3s;
+            background: var(--bg);
         }
 
-        .card:hover .hex-box img { filter: brightness(1.2) contrast(1.1); }
+        .card h3 { font-size: 1rem; margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .card .role { font-family: var(--font-code); font-size: 0.65rem; color: var(--cyan); letter-spacing: 1px; }
 
-        .card h3 { font-size: 1.2rem; margin-bottom: 8px; letter-spacing: 1px; }
-        .card .role { font-family: var(--font-code); font-size: 0.75rem; color: var(--cyan); font-weight: 700; }
+        /* Label Section */
+        .section-label {
+            font-family: var(--font-code); font-size: 0.7rem; color: #475569;
+            text-align: center; margin-bottom: 20px; letter-spacing: 3px;
+        }
 
-        /* --- COLOR THEMES --- */
+        /* Theme Blue */
         .theme-blue { --cyan: var(--blue); --border: rgba(59, 130, 246, 0.3); }
 
-        /* --- MODAL PROFIL --- */
+        /* MODAL STYLE (Tetap sama) */
         .modal {
             position: fixed; inset: 0; background: rgba(2, 6, 23, 0.98);
             display: none; justify-content: center; align-items: center;
             z-index: 9999; backdrop-filter: blur(15px);
         }
-
         .modal-content {
-            background: var(--panel); border: 1px solid var(--cyan);
-            width: 95%; max-width: 800px; padding: 50px;
-            display: grid; grid-template-columns: 1fr 1.5fr; gap: 40px;
-            position: relative; animation: slideUp 0.4s ease;
+            background: #0f172a; border: 1px solid var(--cyan);
+            width: 90%; max-width: 700px; padding: 40px;
+            display: grid; grid-template-columns: 1fr 1.5fr; gap: 30px;
+            animation: fadeIn 0.3s ease;
         }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        .close { position: absolute; top: 20px; right: 20px; font-size: 2rem; color: var(--cyan); cursor: pointer; }
 
-        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-
-        .modal-close {
-            position: absolute; top: 20px; right: 20px;
-            font-size: 2rem; color: var(--cyan); cursor: pointer;
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .row-leaders, .row-admins { grid-template-columns: repeat(2, 1fr); }
+            .modal-content { grid-template-columns: 1fr; text-align: center; }
         }
-
-        .skill-bar { width: 100%; height: 4px; background: rgba(255,255,255,0.1); margin: 15px 0 25px; }
-        .skill-fill { height: 100%; background: var(--cyan); box-shadow: 0 0 15px var(--cyan); transition: 1.5s width; }
-
-        @media (max-width: 768px) {
-            .modal-content { grid-template-columns: 1fr; padding: 30px; text-align: center; overflow-y: auto; max-height: 90vh; }
-            .modal-photo { margin: 0 auto; }
+        @media (max-width: 500px) {
+            .row-leaders, .row-admins { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
     <div class="header-section">
-        <p>> SYSTEM ACCESS GRANTED</p>
-        <h1>ENGINEERING_CORE</h1>
-        <p>REKAYASA SISTEM CERDAS - POLIBATAM FAIR 2026</p>
+        <h1>TEAM_HIERARCHY</h1>
     </div>
 
-    <div class="team-grid">
-        <div class="card" onclick="viewProfile('NAMA KETUA', 'CHIEF EXECUTIVE OFFICER', 'https://api.dicebear.com/7.x/avataaars/svg?seed=chief', 'Visi utama adalah mengintegrasikan efisiensi kerja melalui sistem otomatisasi yang presisi.', '98%')">
-            <div class="hex-box"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=chief"></div>
-            <h3>NAMA KETUA</h3>
-            <span class="role">// CHIEF EXECUTIVE</span>
-        </div>
-
-        <div class="card" onclick="viewProfile('MIQDAM FATAUL GHAZA', 'LEAD INTELLIGENCE SYSTEMS', 'https://i.imgur.com/b25UJ8S.jpeg', 'Spesialis dalam pengembangan arsitektur AI dan logika sistem terpadu.', '95%')">
-            <div class="hex-box"><img src="https://i.imgur.com/b25UJ8S.jpeg"></div>
-            <h3>MIQDAM FATAUL</h3>
-            <span class="role">// AI SPECIALIST</span>
-        </div>
-
-        <div class="card" onclick="viewProfile('NAMA SEKRETARIS', 'SYSTEM SECRETARY', 'https://api.dicebear.com/7.x/avataaars/svg?seed=sec', 'Mengelola manajemen data dan dokumentasi sistem dengan alur kerja digital.', '90%')">
-            <div class="hex-box"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=sec"></div>
-            <h3>NAMA SEKRETARIS</h3>
-            <span class="role">// SECRETARY_MOD</span>
-        </div>
-
-        <div class="card theme-blue" onclick="viewProfile('NAMA BENDAHARA', 'FINANCE CONTROLLER', 'https://api.dicebear.com/7.x/avataaars/svg?seed=tr', 'Optimasi budget dan alokasi sumber daya finansial berbasis data.', '96%', 'blue')">
-            <div class="hex-box"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=tr"></div>
-            <h3>NAMA BENDAHARA</h3>
-            <span class="role" style="color: var(--blue)">// FINANCE_MOD</span>
-        </div>
-    </div>
-
-    <div class="modal" id="profileModal" onclick="hideProfile()">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <span class="modal-close" onclick="hideProfile()">&times;</span>
-            
-            <div class="modal-photo">
-                <div class="hex-box" id="mPhotoFrame" style="width: 200px; height: 200px;">
-                    <img id="mImg" src="">
-                </div>
+    <div class="container">
+        <div class="section-label">--- EXECUTIVE_CORE ---</div>
+        <div class="row-leaders">
+            <div class="card" onclick="viewProfile('NAMA KETUA', 'CHIEF EXECUTIVE', 'https://api.dicebear.com/7.x/avataaars/svg?seed=chief', 'Deskripsi singkat ketua...')">
+                <div class="hex-frame"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=chief"></div>
+                <h3>Nama Ketua</h3>
+                <span class="role">CHIEF EXECUTIVE</span>
             </div>
+            <div class="card" onclick="viewProfile('MIQDAM FATAUL', 'VICE EXECUTIVE', 'https://i.imgur.com/b25UJ8S.jpeg', 'Deskripsi singkat wakil...')">
+                <div class="hex-frame"><img src="https://i.imgur.com/b25UJ8S.jpeg"></div>
+                <h3>Miqdam Fataul</h3>
+                <span class="role">VICE EXECUTIVE</span>
+            </div>
+            <div class="card" onclick="viewProfile('NAMA PIC', 'PERSON IN CHARGE', 'https://api.dicebear.com/7.x/avataaars/svg?seed=pic', 'Deskripsi singkat PIC...')">
+                <div class="hex-frame"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=pic"></div>
+                <h3>Nama PIC</h3>
+                <span class="role">PERSON IN CHARGE</span>
+            </div>
+        </div>
 
-            <div class="modal-info">
-                <h2 id="mName" style="font-size: 2.5rem; color: var(--cyan);"></h2>
-                <p id="mRole" style="font-family: var(--font-code); color: var(--cyan); margin-bottom: 20px;"></p>
-                <p id="mBio" style="color: #94a3b8; line-height: 1.8; margin-bottom: 30px;"></p>
-                
-                <p style="font-family: var(--font-code); font-size: 0.7rem;">SYSTEM SYNC LEVEL</p>
-                <div class="skill-bar"><div class="skill-fill" id="mSkill"></div></div>
+        <div class="section-label">--- ADMINISTRATIVE_MOD ---</div>
+        <div class="row-admins">
+            <div class="card" onclick="viewProfile('SEKRE 1', 'SECRETARY I', 'https://api.dicebear.com/7.x/avataaars/svg?seed=s1', 'Deskripsi Sekre 1...')">
+                <div class="hex-frame"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=s1"></div>
+                <h3>Sekretaris 1</h3>
+                <span class="role">SECRETARY I</span>
+            </div>
+            <div class="card" onclick="viewProfile('SEKRE 2', 'SECRETARY II', 'https://api.dicebear.com/7.x/avataaars/svg?seed=s2', 'Deskripsi Sekre 2...')">
+                <div class="hex-frame"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=s2"></div>
+                <h3>Sekretaris 2</h3>
+                <span class="role">SECRETARY II</span>
+            </div>
+            <div class="card theme-blue" onclick="viewProfile('BEND 1', 'FINANCE I', 'https://api.dicebear.com/7.x/avataaars/svg?seed=b1', 'Deskripsi Bendahara 1...', 'blue')">
+                <div class="hex-frame"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=b1"></div>
+                <h3>Bendahara 1</h3>
+                <span class="role">FINANCE I</span>
+            </div>
+            <div class="card theme-blue" onclick="viewProfile('BEND 2', 'FINANCE II', 'https://api.dicebear.com/7.x/avataaars/svg?seed=b2', 'Deskripsi Bendahara 2...', 'blue')">
+                <div class="hex-frame"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=b2"></div>
+                <h3>Bendahara 2</h3>
+                <span class="role">FINANCE II</span>
+            </div>
+        </div>
+    </div>
 
-                <div style="display: flex; gap: 20px;">
-                    <i class="fab fa-instagram fa-lg"></i>
-                    <i class="fab fa-linkedin fa-lg"></i>
-                    <i class="fas fa-envelope fa-lg"></i>
-                </div>
+    <div class="modal" id="pModal" onclick="this.style.display='none'">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close" onclick="document.getElementById('pModal').style.display='none'">&times;</span>
+            <div class="hex-frame" style="width: 180px; height: 180px; margin: 0 auto;"><img id="mImg" src=""></div>
+            <div class="m-info">
+                <h2 id="mName" style="color: var(--cyan); margin-bottom: 10px;"></h2>
+                <p id="mRole" style="font-family: var(--font-code); font-size: 0.8rem; margin-bottom: 20px;"></p>
+                <p id="mBio" style="color: #94a3b8; font-size: 0.9rem; line-height: 1.6;"></p>
             </div>
         </div>
     </div>
 
     <script>
-        function viewProfile(name, role, img, bio, skill, color = 'cyan') {
-            const modal = document.getElementById('profileModal');
+        function viewProfile(name, role, img, bio, color = 'cyan') {
             const root = document.querySelector(':root');
-            
-            // Set Warna Berdasarkan Tema
-            if(color === 'blue') {
-                root.style.setProperty('--cyan', '#3b82f6');
-            } else {
-                root.style.setProperty('--cyan', '#00f2ff');
-            }
-
+            root.style.setProperty('--cyan', color === 'blue' ? '#3b82f6' : '#00f2ff');
             document.getElementById('mName').innerText = name;
             document.getElementById('mRole').innerText = "> " + role;
             document.getElementById('mImg').src = img;
             document.getElementById('mBio').innerText = bio;
-            document.getElementById('mSkill').style.width = '0%';
-            
-            modal.style.display = 'flex';
-            
-            setTimeout(() => {
-                document.getElementById('mSkill').style.width = skill;
-            }, 100);
-        }
-
-        function hideProfile() {
-            document.getElementById('profileModal').style.display = 'none';
+            document.getElementById('pModal').style.display = 'flex';
         }
     </script>
 </body>
