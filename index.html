@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI_CORE | Team Hierarchy & Profile</title>
+    <title>AI_CORE | Polibatam Fair 2026</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <style>
@@ -27,12 +27,42 @@
             display: flex; flex-direction: column; align-items: center; padding: 60px 20px;
         }
 
-        .header-section { text-align: center; margin-bottom: 60px; }
-        .header-section h1 { font-size: 2.5rem; letter-spacing: 5px; color: var(--cyan); text-transform: uppercase; }
+        /* --- SEKSI PENJELASAN EVENT --- */
+        .about-section {
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 80px;
+            padding: 40px;
+            border: 1px solid var(--border);
+            background: rgba(15, 23, 42, 0.5);
+            position: relative;
+            clip-path: polygon(5% 0, 100% 0, 100% 90%, 95% 100%, 0 100%, 0 10%);
+        }
+
+        .about-section h2 {
+            font-size: 2.2rem;
+            color: var(--cyan);
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .about-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #94a3b8;
+            text-align: justify;
+        }
+
+        .highlight { color: white; font-weight: 500; border-bottom: 1px solid var(--cyan); }
+
+        /* --- STRUKTUR TIM --- */
+        .header-section { text-align: center; margin-bottom: 40px; }
+        .header-section h1 { font-size: 2rem; letter-spacing: 5px; color: var(--cyan); text-transform: uppercase; }
 
         .container { max-width: 1200px; width: 100%; }
 
-        /* --- GRID LAYOUT --- */
         .row-leaders {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -86,7 +116,7 @@
         
         .theme-blue { --cyan: var(--blue); --border: rgba(59, 130, 246, 0.3); }
 
-        /* --- MODAL SYSTEM (DUA KOLOM) --- */
+        /* --- MODAL (DUA KOLOM) --- */
         .modal {
             position: fixed; inset: 0; background: rgba(2, 6, 23, 0.98);
             display: none; justify-content: center; align-items: center;
@@ -110,7 +140,6 @@
 
         .close { position: absolute; top: 15px; right: 20px; font-size: 2rem; color: var(--cyan); cursor: pointer; }
 
-        /* Sisi Kiri: Profil Utama */
         .modal-left {
             display: flex;
             flex-direction: column;
@@ -124,13 +153,7 @@
         .modal-left .modal-role { font-family: var(--font-code); font-size: 0.75rem; color: #94a3b8; margin-bottom: 20px; }
         .modal-left .modal-bio { font-size: 0.85rem; line-height: 1.6; color: #cbd5e1; text-align: justify; }
 
-        /* Sisi Kanan: Track Record memanjang kebawah */
-        .modal-right {
-            display: flex;
-            flex-direction: column;
-            max-height: 450px;
-        }
-
+        .modal-right { display: flex; flex-direction: column; max-height: 450px; }
         .modal-right h4 {
             font-family: var(--font-code);
             font-size: 0.9rem;
@@ -141,15 +164,8 @@
             letter-spacing: 2px;
         }
 
-        .track-container {
-            overflow-y: auto;
-            padding-right: 15px;
-        }
-
-        .track-list {
-            list-style: none;
-        }
-
+        .track-container { overflow-y: auto; padding-right: 15px; }
+        .track-list { list-style: none; }
         .track-item {
             margin-bottom: 15px;
             padding-left: 20px;
@@ -167,7 +183,7 @@
             font-weight: bold;
         }
 
-        /* Responsive Mobile */
+        /* Responsive */
         @media (max-width: 850px) {
             .row-leaders, .row-admins { grid-template-columns: repeat(2, 1fr); }
             .modal-content { grid-template-columns: 1fr; max-height: 90vh; overflow-y: auto; }
@@ -180,26 +196,35 @@
 </head>
 <body>
 
+    <section class="about-section">
+        <h2>POLIBATAM FAIR 2026</h2>
+        <p>
+            <span class="highlight">Polibatam Fair</span> adalah acara prestisius tahunan yang diselenggarakan oleh Politeknik Negeri Batam sebagai wadah kreativitas, inovasi, dan kompetisi. Menghadirkan sinergi antara <span class="highlight">Teknologi, Seni, dan Entrepreneurship</span>, event ini menjadi panggung utama bagi mahasiswa untuk memamerkan karya unggulan, memperluas jejaring profesional, serta merayakan semangat kolaborasi dalam ekosistem akademik yang dinamis. 
+            <br><br>
+            Tahun ini, kami mengusung tema kecerdasan buatan dan masa depan digital untuk mendorong generasi muda Indonesia bersaing di kancah global melalui berbagai kompetisi teknis dan pameran produk inovatif.
+        </p>
+    </section>
+
     <div class="header-section">
-        <h1>TEAM_HIERARCHY</h1>
+        <h1>CORE_ORGANIZATION</h1>
     </div>
 
     <div class="container">
         <div class="section-label">--- EXECUTIVE_CORE ---</div>
         <div class="row-leaders">
-            <div class="card" onclick="viewProfile('NAMA KETUA', 'CHIEF EXECUTIVE', 'https://api.dicebear.com/7.x/avataaars/svg?seed=chief', 'Visi utama memimpin tim dengan koordinasi strategis dan eksekusi yang presisi.', 'Ketua Pelaksana Polibatam Fair 2026 | Koordinator Umum Event Nasional | Mentor Kepemimpinan 2025 | Delegasi Mahasiswa Berprestasi')">
+            <div class="card" onclick="viewProfile('NAMA KETUA', 'CHIEF EXECUTIVE', 'https://api.dicebear.com/7.x/avataaars/svg?seed=chief', 'Visi utama memimpin tim dengan koordinasi strategis dan eksekusi yang presisi.', 'Ketua Pelaksana Polibatam Fair 2026 | Koordinator Umum Event Nasional | Mentor Kepemimpinan 2025')">
                 <div class="hex-frame"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=chief"></div>
                 <h3>Nama Ketua</h3>
                 <span class="role">CHIEF EXECUTIVE</span>
             </div>
             
-            <div class="card" onclick="viewProfile('NAMA PIC', 'PERSON IN CHARGE', 'https://api.dicebear.com/7.x/avataaars/svg?seed=pic', 'Mengelola operasional lapangan dan memastikan setiap divisi bekerja sesuai SOP.', 'PIC Utama Polibatam Fair | Head of Operations 2025 | Supervisor Teknis Event | Koordinator Keamanan Digital')">
+            <div class="card" onclick="viewProfile('NAMA PIC', 'PERSON IN CHARGE', 'https://api.dicebear.com/7.x/avataaars/svg?seed=pic', 'Mengelola operasional lapangan dan memastikan setiap divisi bekerja sesuai SOP.', 'PIC Utama Polibatam Fair | Head of Operations 2025 | Supervisor Teknis Event')">
                 <div class="hex-frame"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=pic"></div>
                 <h3>Nama PIC</h3>
                 <span class="role">PERSON IN CHARGE</span>
             </div>
 
-            <div class="card" onclick="viewProfile('MIQDAM FATAUL GHAZA', 'CO-LEADER', 'https://i.imgur.com/b25UJ8S.jpeg', 'Spesialis sistem cerdas yang mendukung penuh struktur manajerial dan teknis tim.', 'Lead Developer AI System | Co-Leader Polibatam Fair | Juara 1 Kompetisi Web Nasional | Arsitek Database Event 2026')">
+            <div class="card" onclick="viewProfile('MIQDAM FATAUL GHAZA', 'CO-LEADER', 'https://i.imgur.com/b25UJ8S.jpeg', 'Spesialis sistem cerdas yang mendukung penuh struktur manajerial dan teknis tim.', 'Lead Developer AI System | Co-Leader Polibatam Fair | Juara 1 Kompetisi Web Nasional')">
                 <div class="hex-frame"><img src="https://i.imgur.com/b25UJ8S.jpeg"></div>
                 <h3>Miqdam Fataul Ghaza</h3>
                 <span class="role">CO-LEADER</span>
@@ -235,22 +260,15 @@
     <div class="modal" id="pModal" onclick="this.style.display='none'">
         <div class="modal-content" onclick="event.stopPropagation()">
             <span class="close" onclick="document.getElementById('pModal').style.display='none'">&times;</span>
-            
             <div class="modal-left">
-                <div class="hex-frame" style="width: 150px; height: 150px;">
-                    <img id="mImg" src="">
-                </div>
+                <div class="hex-frame" style="width: 150px; height: 150px;"><img id="mImg" src=""></div>
                 <h2 id="mName"></h2>
                 <p id="mRole" class="modal-role"></p>
                 <p id="mBio" class="modal-bio"></p>
             </div>
-
             <div class="modal-right">
                 <h4>[ PANITIA_TRACK_RECORD ]</h4>
-                <div class="track-container">
-                    <ul class="track-list" id="mTrack">
-                        </ul>
-                </div>
+                <div class="track-container"><ul class="track-list" id="mTrack"></ul></div>
             </div>
         </div>
     </div>
@@ -259,17 +277,13 @@
         function viewProfile(name, role, img, bio, trackData, color = 'cyan') {
             const root = document.querySelector(':root');
             root.style.setProperty('--cyan', color === 'blue' ? '#3b82f6' : '#00f2ff');
-            
             document.getElementById('mName').innerText = name;
             document.getElementById('mRole').innerText = "> " + role;
             document.getElementById('mImg').src = img;
             document.getElementById('mBio').innerText = bio;
 
-            // Generate Track Record List
             const trackList = document.getElementById('mTrack');
-            trackList.innerHTML = ""; // Bersihkan list lama
-            
-            // Gunakan tanda pipe '|' sebagai pemisah di parameter onclick
+            trackList.innerHTML = "";
             const tracks = trackData.split('|');
             tracks.forEach(text => {
                 const li = document.createElement('li');
@@ -277,11 +291,9 @@
                 li.innerText = text.trim();
                 trackList.appendChild(li);
             });
-
             document.getElementById('pModal').style.display = 'flex';
         }
 
-        // Tutup modal jika tekan tombol ESC
         window.addEventListener('keydown', (e) => {
             if (e.key === "Escape") document.getElementById('pModal').style.display = 'none';
         });
